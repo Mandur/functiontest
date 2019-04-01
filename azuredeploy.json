@@ -1,0 +1,26 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "timeout": {
+            "type": "int"
+        }
+    },
+    "variables": {},
+    "functions": [],
+    "resources": [
+        {
+            "name": "deployFunction",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2014-04-01-preview",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[Concat('https://testmikoufunc.azurewebsites.net/api/GetTemplate','?timeout=',parameters('timeout'))]",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}
